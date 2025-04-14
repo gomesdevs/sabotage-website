@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabotage | História</title>
+    <style>
+        /* Variáveis e configurações globais */
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #c79d3f;
+            --color-tertiary: #333333;
+            --color-background: #0a0a0a;
+            --color-text: #f5f5f5;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Estilização do header */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Hero Section */
+        .page-hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(245, 245, 245, 0.9);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--color-secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 1rem;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            transform: translateX(30px);
+        }
+
+        .timeline-item:nth-child(even).in-view {
+            transform: translateX(0);
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: var(--color-tertiary);
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-tertiary);
+            transform: rotate(45deg);
+            top: calc(50% - 10px);
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            right: auto;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-family: var(--font-heading);
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--color-secondary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -12.5px;
+            border: 4px solid var(--color-background);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -12.5px;
+            right: auto;
+        }
+
+        /* Bio Section */
+        .bio-section {
+            max-width: 1000px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bio-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .bio-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .bio-text p.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bio-image {
+            position: relative;
+        }
+
+        .bio-image img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .bio-image img.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bio-quote {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.2rem;
+            max-width: 350px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Legacy Section */
+        .legacy-section {
+            background-color: var(--color-tertiary);
+            padding: 6rem 2rem;
+        }
+
+        .legacy-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .legacy-card {
+            background-color: var(--color-primary);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .legacy-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .legacy-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .legacy-card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .legacy-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .legacy-card:hover .legacy-card-img img {
+            transform: scale(1.05);
+        }
+
+        .legacy-card-content {
+            padding: 1.5rem;
+        }
+
+        .legacy-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legacy-card-text {
+            margin-bottom: 1.5rem;
+            color: rgba(245, 245, 245, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-secondary);
+        }
+
+        .copyright {
+            width: 100%;
+            margin-top: 2rem;
+            color: rgba(245, 245, 245, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .bio-content {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-quote {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.8rem;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                flex-direction: column;
+                background-color: var(--color-primary);
+                width: 100%;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                padding-top: 6rem;
+                align-items: center;
+                transform: translateX(100%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-dot {
+                left: 27.5px;
+                right: auto;
+            }
+
+            .timeline-content::after {
+                left: -10px;
+                right: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a href="index.html" class="logo">SABOTAGE</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="discografia.html">Discografia</a></li>
+                <li><a href="roupas.html">Estilo</a></li>
+                <li><a href="lifestyle.html">Lifestyle</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <img src="/api/placeholder/1920/1080" alt="Sabotage" class="page-hero-background">
+        <div class="page-hero-content">
+            <h1 class="page-title">A História de Sabotage</h1>
+            <p class="page-subtitle">Uma jornada de superação, talento e legado</p>
+        </div>
+    </section>
+
+    <section class="bio-section">
+        <h2 class="section-title">Biografia</h2>
+        <div class="bio-content">
+            <div class="bio-text">
+                <p class="bio-paragraph">Mauro Mateus dos Santos, mais conhecido como Sabotage, nasceu em 3 de abril de 1973 na favela do Canão, na zona sul de São Paulo. Cresceu em meio às adversidades sociais, encontrando na música e na poesia de rua uma forma de expressão e resistência.</p>
+                
+                <p class="bio-paragraph">Desde jovem, Sabotage demonstrou um talento especial para rimas e construções poéticas que retratavam o cotidiano da periferia. Apesar das dificuldades, desenvolveu um estilo único que mesclava ritmos e influências diversas, criando uma sonoridade original no rap brasileiro.</p>
+                
+                <p class="bio-paragraph">Em 2000, Sabotage começou a ganhar notoriedade no cenário do hip-hop nacional ao participar da coletânea "Rap É Compromisso". O seu carisma e talento chamaram a atenção de produtores e artistas, incluindo os Rappin' Hood e os integrantes do RZO, abrindo caminho para novos horizontes em sua carreira.</p>
+
+                <p class="bio-paragraph">O auge de sua carreira veio com o lançamento do álbum "Rap É Compromisso", em 2001, que se tornou um marco na história do rap nacional. O disco trouxe faixas emblemáticas como "Um Bom Lugar", "Na Zona Sul" e "Respeito É Pra Quem Tem", que até hoje são referências na música brasileira.</p>
+            </div>
+            <div class="bio-image">
+                <img src="/api/placeholder/600/800" alt="Sabotage">
+                <div class="bio-quote">
+                    "A humildade é a essência do homem, não adianta você ser o bamba e não ter humildade."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <h2 class="section-title">Linha do Tempo</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">1973</span>
+                    <h3 class="timeline-title">Nascimento</h3>
+                    <p>Nasce Mauro Mateus dos Santos, no dia 3 de abril, na favela do Canão, zona sul de São Paulo.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Anos 90</span>
+                    <h3 class="timeline-title">Primeiros Passos</h3>
+                    <p>Começa a desenvolver seu estilo único no rap e participa de batalhas de rima nas periferias de São Paulo, onde ganha respeito pela sua habilidade lírica.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2000</span>
+                    <h3 class="timeline-title">Reconhecimento</h3>
+                    <p>Ganha visibilidade no cenário hip-hop ao participar da coletânea "Rap É Compromisso", que o insere definitivamente no circuito do rap nacional.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2001</span>
+                    <h3 class="timeline-title">Álbum de Estreia</h3>
+                    <p>Lança seu único álbum de estúdio, "Rap É Compromisso", que se torna um clássico instantâneo e referência fundamental para o gênero no Brasil.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2002</span>
+                    <h3 class="timeline-title">Cinema e Expansão</h3>
+                    <p>Participa do filme "O Invasor", de Beto Brant, com participação na trilha sonora e atuação, expandindo sua influência para além da música.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2003</span>
+                    <h3 class="timeline-title">Legado Eterno</h3>
+                    <p>Em 24 de janeiro, Sabotage é assassinado em São Paulo. Sua morte prematura deixa um vazio no rap nacional, mas seu legado continua influenciando novas gerações.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Pós 2003</span>
+                    <h3 class="timeline-title">Imortalidade Cultural</h3>
+                    <p>Diversos artistas e produções culturais prestam homenagens a Sabotage, consolidando seu lugar como um dos mais importantes nomes do hip-hop brasileiro.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="legacy-section">
+        <div class="legacy-content">
+            <h2 class="section-title">Legado</h2>
+            <div class="legacy-grid">
+                <div class="legacy-card">
+                    <div class="legacy-card-img">
+                        <img src="/api/placeholder/600/400" alt="Influência Musical">
+                    </div>
+                    <div class="legacy-card-content">
+                        <h3 class="legacy-card-title">Influência Musical</h3>
+                        <p class="legacy-card-text">Seu estilo único de flow e construção lírica influenciou gerações de MCs e produtores musicais, sendo referência fundamental no desenvolvimento do rap brasileiro.</p>
+                    </div>
+                </div>
+
+                <div class="legacy-card">
+                    <div class="legacy-card-img">
+                        <img src="/api/placeholder/600/400" alt="Cinema">
+                    </div>
+                    <div class="legacy-card-content">
+                        <h3 class="legacy-card-title">Presença no Cinema</h3>
+                        <p class="legacy-card-text">Sua participação no filme "O Invasor" abriu caminhos para a integração entre o rap e o cinema nacional, criando novas possibilidades narrativas.</p>
+                    </div>
+                </div>
+
+                <div class="legacy-card">
+                    <div class="legacy-card-img">
+                        <img src="/api/placeholder/600/400" alt="Consciência Social">
+                    </div>
+                    <div class="legacy-card-content">
+                        <h3 class="legacy-card-title">Consciência Social</h3>
+                        <p class="legacy-card-text">Suas letras trouxeram visibilidade às questões sociais e à realidade das periferias, contribuindo para debates importantes sobre desigualdade e representatividade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">SABOTAGE</div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html">Início</a>
+                <a href="historia.html">História</a>
+                <a href="discografia.html">Discografia</a>
+                <a href="roupas.html">Estilo</a>
+                <a href="lifestyle.html">Lifestyle</a>
+            </nav>
+            <p class="copyright">&copy; 2025 Legado Sabotage. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Reveal elements on scroll
+        const revealElements = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        };
+
+        const options = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(revealElements, options);
+
+        // Timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Bio paragraphs
+        document.querySelectorAll('.bio-paragraph').forEach(paragraph => {
+            observer.observe(paragraph);
+        });
+
+        // Bio image
+        document.querySelector('.bio-image img').classList.add('observed');
+        observer.observe(document.querySelector('.bio-image img'));
+
+        // Legacy cards
+        document.querySelectorAll('.legacy-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

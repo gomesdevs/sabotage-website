@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O estilo de Sabotage - Conheça a moda e o visual do lendário rapper brasileiro">
+    <title>Sabotage | Estilo</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/roupas.css">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">SABOTAGE</a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="discografia.html">Discografia</a></li>
+                    <li><a href="roupas.html" class="active">Estilo</a></li>
+                    <li><a href="lifestyle.html">Lifestyle</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <img src="assets/images/graffiti.jpg" alt="Sabotage - Estilo" class="page-hero-background">
+            <div class="page-hero-content container">
+                <h1 class="page-title">O Estilão do Sabotage</h1>
+                <p class="page-subtitle">Onde a atitude da quebrada vira moda e o rap ganha vida</p>
+            </div>
+        </section>
+
+        <section class="outfits-section">
+            <div class="container">
+                <h2 class="section-title">O Swag do Maestro</h2>
+                <p class="section-intro">Sabotage não só rimava com alma—ele vestia a essência da rua. Seu estilo, puro anos 2000, misturava o peso do hip-hop com a vibe da periferia paulistana. Bora conferir os looks que marcaram época?</p>
+                
+                <div class="outfit-grid">
+                    <article class="outfit-card">
+                        <div class="outfit-image-container">
+                            <img src="assets/images/outfit3.jpeg" alt="Look Clássico" class="outfit-image">
+                        </div>
+                        <div class="outfit-content">
+                            <h3 class="outfit-title">Clássico da Quebrada</h3>
+                            <p class="outfit-description">Camisa larga, boné virado pro lado e um tênis brabo: esse era o Sabotage no palco ou na rua. Um look que gritava atitude e representava a periferia com orgulho.</p>
+                            <div class="outfit-details">
+                                <h4>Detalhes do Look:</h4>
+                                <ul>
+                                    <li>Inspiração: Shows ao vivo</li>
+                                    <li>Período: Anos 2000</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="outfit-card">
+                        <div class="outfit-image-container">
+                            <img src="assets/images/outfit1.jpg" alt="Look Streetwear" class="outfit-image">
+                        </div>
+                        <div class="outfit-content">
+                            <h3 class="outfit-title">Streetwear Raiz</h3>
+                            <p class="outfit-description">Jaqueta oversized, calça baggy e correntes brilhando—esse era o estilão que o Sabotage usava pra mandar ver. Um visual que misturava o rap gringo com o molejo da zona sul.</p>
+                            <div class="outfit-details">
+                                <h4>Detalhes do Look:</h4>
+                                <ul>
+                                    <li>Inspiração: Clipes de rap</li>
+                                    <li>Período: 2001-2002</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="outfit-card">
+                        <div class="outfit-image-container">
+                            <img src="assets/images/outfit2.jpg" alt="Look O Invasor" class="outfit-image">
+                        </div>
+                        <div class="outfit-content">
+                            <h3 class="outfit-title">Vibe d'O Invasor</h3>
+                            <p class="outfit-description">No filme <em>O Invasor</em>, Sabotage trouxe um look mais sóbrio, com camisa polo e calça jeans, mas sem perder a essência da rua. Era ele mostrando que o estilo também conta histórias.</p>
+                            <div class="outfit-details">
+                                <h4>Detalhes do Look:</h4>
+                                <ul>
+                                    <li>Inspiração: Papel no cinema</li>
+                                    <li>Período: 2002</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <h2 class="section-title">Faça Parte do Legado</h2>
+                    <p class="contact-text">Tá na vibe do Sabotage? Conta pra gente como o estilão dele te inspira ou compartilha uma história sobre o maestro da quebrada! É só mandar sua mensagem aqui.</p>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="style">Seu Estilo Favorito</label>
+                            <select id="style" name="style" required>
+                                <option value="">Selecione um estilo</option>
+                                <option value="classico">Clássico da Quebrada</option>
+                                <option value="streetwear">Streetwear Raiz</option>
+                                <option value="invasor">Vibe d'O Invasor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <fieldset>
+                                <legend>Você já viu Sabotage ao vivo?</legend>
+                                <div class="radio-group">
+                                    <input type="radio" id="sim" name="viu_show" value="sim">
+                                    <label for="sim">Sim</label>
+                                    <input type="radio" id="nao" name="viu_show" value="nao">
+                                    <label for="nao">Não</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="form-group">
+                            <fieldset>
+                                <legend>Quais elementos do estilo você curte?</legend>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="bone" name="elementos[]" value="bone">
+                                    <label for="bone">Boné</label>
+                                    <input type="checkbox" id="correntes" name="elementos[]" value="correntes">
+                                    <label for="correntes">Correntes</label>
+                                    <input type="checkbox" id="tenis" name="elementos[]" value="tenis">
+                                    <label for="tenis">Tênis</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Sua História com o Rap</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SABOTAGE</div>
+                <nav class="footer-nav">
+                    <a href="index.html">Início</a>
+                    <a href="historia.html">História</a>
+                    <a href="discografia.html">Discografia</a>
+                    <a href="roupas.html">Estilo</a>
+                    <a href="lifestyle.html">Lifestyle</a>
+                </nav>
+                <p class="copyright">© 2025 Legado Sabotage. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/form-validation.js"></script>
+</body>
+</html>

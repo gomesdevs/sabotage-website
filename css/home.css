@@ -1,0 +1,37 @@
+/* Home Page Specific Styles */
+
+.hero {
+  background-color: var(--color-background);
+}
+
+.quote-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before,
+.quote-section::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  opacity: 0.03;
+  z-index: 0;
+}
+
+.quote-section::before {
+  top: -150px;
+  left: -150px;
+}
+
+.quote-section::after {
+  bottom: -150px;
+  right: -150px;
+}
+
+.quote-section .container {
+  position: relative;
+  z-index: 1;
+}
